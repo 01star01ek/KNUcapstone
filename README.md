@@ -1,2 +1,2 @@
 # KNUcapstone
-SignLanguageTranslato
+Sign Language Translator
