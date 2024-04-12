@@ -1,0 +1,31 @@
+@import url(https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700);
+
+body {
+    display: flex;
+    flex-direction : column;
+    text-align: center;
+    align-items:center;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+}
+
+main {
+    margin: 0%;
+}
+
+.main-text {
+    text-align: center;
+    color : white;
+}
+
+img {
+    margin: auto;
+    text-align: center;
+}
+
+.btn {
+    margin-top: 30px;
+	width: 200px;
+    font-weight:900;
+}
