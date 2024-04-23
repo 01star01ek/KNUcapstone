@@ -1,31 +1,66 @@
-@import url(https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700);
 
 body {
+    min-width: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction : column;
     text-align: center;
     align-items:center;
-    width: 100%;
-    height: 100%;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
-main {
-    margin: 0%;
+.sub-tit {
+    margin-bottom: -4px;
+    color: white;
+    font-size: 16px;
 }
 
-.main-text {
+.tit {
+    font-size: 60px;
+    color: white;
+    font-weight: 900;
+}
+
+.main-all {
     text-align: center;
-    color : white;
 }
 
 img {
+    margin-top: 10px;
     margin: auto;
-    text-align: center;
+    width : 180px;
+    height : 120px;
+    margin-bottom: 100px;
 }
 
-.btn {
-    margin-top: 30px;
-	width: 200px;
-    font-weight:900;
+
+button {
+    background-color: white;
+    text-align: center;
+    padding-top : 10px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    color : #115FA7;
+    font-weight: 900;
+    font-size: 16px;
+    box-shadow: 0 17px 20px -18px rgba(0, 0, 0, 1); 
+    border : none;
+    border-radius: 20px;
+}
+
+button:hover {
+    background-color: rgb(230, 230, 230);
+    color :#0d477d
+}
+
+button:focus {
+    outline: none;
+}
+
+.sub-btn {
+    color : white;
+    margin-top: 15px;
+    font-size: 11px;
+    text-decoration : underline;
 }
