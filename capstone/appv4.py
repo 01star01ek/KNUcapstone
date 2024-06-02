@@ -1,5 +1,7 @@
 import re
 import torch
+from PIL import Image
+import torchvision.transforms as transforms
 import cv2
 from flask import Flask, render_template, Response
 import numpy as np
@@ -36,6 +38,14 @@ def create_capture(source = 0, fallback = 'synth:'):
     
     return cap
 
+# 이미지 변환
+def preprocess_image(img):
+	image = Image.fromarray(img)
+	image = image.convert('RGB')
+	transform = transforms.Compose([transforms.Resize((416,416)),])
+	image = transform(image)
+	return image
+
 def capture_frames():
     import sys
     import getopt
@@ -58,6 +68,7 @@ def capture_frames():
                 break
                 
             # YOLOv5 이용 객체 감지
+            frame = preprocess_image(frame)
             results = model(frame)
             # 결과 프레임에 박스 그리기
             frame = results.render()[0]
