@@ -4,6 +4,7 @@ import re
 import cv2
 from flask import Flask, render_template, Response
 import numpy as np
+import imutils
 import threading
 import sys
 import getopt
@@ -16,6 +17,9 @@ output_frame = None
 
 # OpenCV 이용 ONNX 모델 로드
 model = cv2.dnn.readNetFromONNX('bestonver.onnx')
+layer_names = model.getLayerNames()
+output_layers = [layer_names[i-1] for i in model.getUnconnectedOutLayers()]
+# colors = np.random.uniform(0, 255, size=(len(classes), 3))
 
 # 웹캠 캡처 객체 생성
 def create_capture(source = 0, fallback = 'synth:'):
@@ -72,14 +76,15 @@ def detect_objects(frame):
         frame = frame.astype(np.uint8)
     
     # 이미지 전처리
-    frame = cv2.resize(frame, (416, 416))
-    blob = cv2.dnn.blobFromImage(frame, 1/255.0, size=(416, 416), swapRB=True, crop=False)
+    img = imutils.resize(frame, width=640)
+    height, width, channels = img.shape
+    blob = cv2.dnn.blobFromImage(frame, 0.00392, size=(640, 640), swapRB=True, crop=False)
     
     # 네트워크 입력 설정
     model.setInput(blob)
     
     # 추론 수행
-    outputs = model.forward()
+    outputs = model.forward(output_layers)[0]
     
     # 결과 처리
     h, w = frame.shape[:2]
